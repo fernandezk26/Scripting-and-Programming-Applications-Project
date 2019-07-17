@@ -42,7 +42,6 @@ void Roster::add(string studentID, string firstName, string lastName, string ema
 
 void Roster::printAll()
 {
-
 }
 
 void Roster::printByDegreeProgram(int degreeProgram)
@@ -92,3 +91,6 @@ int main() {
 Roster::~Roster()
 {
 }
+
+
+//github change test
