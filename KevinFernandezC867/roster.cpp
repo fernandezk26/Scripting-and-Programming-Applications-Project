@@ -47,19 +47,28 @@ void Roster::add(string studentID, string firstName, string lastName, string ema
 
 void Roster::printAll()
 {
-	for (int i = 0; i < sizeof(classRosterArray) / sizeof(classRosterArray[i]); i++) {
-		classRosterArray[i]->print();
-	}
+	for (int i = 0; i <= this->lastIndex; i++) (this->students)[i]->print();
 }
 
 void Roster::printByDegreeProgram(int degreeProgram)
 {
-
+	cout << "Printing Students of type " << degreeStrings[degreeProgram] << endl;
+	for (int i = 0; i <= lastIndex; i++) {
+		if (this->students[i]->getDegreeProgram() == degreeProgram) this->students[i]->print();
+	}
 }
 
 void Roster::printDaysInCourse(string studentID) 
 {
-
+	for (int i = 0; i < 5; i++) {
+		if ((*classRosterArray[i]).getStudentID() == studentID) {
+			int averageDays = 0;
+			averageDays = ((*classRosterArray[i]).getDaysInCourse()[0] + (*classRosterArray[i]).getDaysInCourse()[1]
+				+ (*classRosterArray[i]).getDaysInCourse()[2]) / 3;
+			cout << "The average days it took the student with studentID: " << studentID << " to finish 3 courses: " << averageDays << '\n';
+		}
+	}
+	cout << '\n';
 }
 
 void Roster::printInvalidEmails() 
@@ -70,7 +79,18 @@ void Roster::printInvalidEmails()
 
 void Roster::remove(string studentID) 
 {
-
+	bool studentFound = false;
+	for (int i = 0; i <= lastIndex; i++)
+	{
+		if (this->students[i]->getStudentID() == studentID)
+		{
+			studentFound = true;
+			delete this->students[i];
+			this->students[i] = this->students[lastIndex];
+			lastIndex--;
+		}
+	}
+	return studentFound; //FIXME
 }
 
 
