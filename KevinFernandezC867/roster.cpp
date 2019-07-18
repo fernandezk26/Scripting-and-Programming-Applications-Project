@@ -19,6 +19,11 @@ Roster::Roster(int maxSize)
 	this->students = new Student * [maxSize];
 }
 
+Student* Roster::getStudentAt(int index)
+{
+	return students[index];
+}
+
 void Roster::add(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, Degree degreeProgram) 
 {
 	int courseDays[3];
@@ -42,6 +47,9 @@ void Roster::add(string studentID, string firstName, string lastName, string ema
 
 void Roster::printAll()
 {
+	for (int i = 0; i < sizeof(classRosterArray) / sizeof(classRosterArray[i]); i++) {
+		classRosterArray[i]->print();
+	}
 }
 
 void Roster::printByDegreeProgram(int degreeProgram)
