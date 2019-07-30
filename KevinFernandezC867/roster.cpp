@@ -60,15 +60,7 @@ void Roster::printByDegreeProgram(int degreeProgram)
 
 void Roster::printDaysInCourse(string studentID) 
 {
-	for (int i = 0; i < 5; i++) {
-		if ((*classRosterArray[i]).getStudentID() == studentID) {
-			int averageDays = 0;
-			averageDays = ((*classRosterArray[i]).getDaysInCourse()[0] + (*classRosterArray[i]).getDaysInCourse()[1]
-				+ (*classRosterArray[i]).getDaysInCourse()[2]) / 3;
-			cout << "The average days it took the student with studentID: " << studentID << " to finish 3 courses: " << averageDays << '\n';
-		}
-	}
-	cout << '\n';
+
 }
 
 void Roster::printInvalidEmails() 
@@ -79,18 +71,7 @@ void Roster::printInvalidEmails()
 
 void Roster::remove(string studentID) 
 {
-	bool studentFound = false;
-	for (int i = 0; i <= lastIndex; i++)
-	{
-		if (this->students[i]->getStudentID() == studentID)
-		{
-			studentFound = true;
-			delete this->students[i];
-			this->students[i] = this->students[lastIndex];
-			lastIndex--;
-		}
-	}
-	return studentFound; //FIXME
+
 }
 
 
@@ -104,6 +85,7 @@ int main() {
 	cout << "Kevin Fernandez \n\n";
 
 	Roster classRoster;
+	Degree degreeProgram;
 
 	const string studentData[] =
 	{
@@ -114,7 +96,85 @@ int main() {
 		"A5,Kevin,Fernandez,kfern20@wgu.edu,15,20,90,30,SOFTWARE"
 	};
 
+
+	string r1, r2, r3, r4, r5;
+	r1 = studentData[0];
+	r2 = studentData[1];
+	r3 = studentData[2];
+	r4 = studentData[3];
+	r5 = studentData[4];
+
+	string id, fname, lname, mail, temp;
+	enum Degree degree;
+	int age = 0, d1 = 0, d2 = 0, d3 = 0;
+	
+	istringstream ss(r1);
+	string token;
+
+	for (int i = 0; i < 9; i++)
+	{
+		getline(ss, token, ',');
+		if (i == 0)
+		{
+			id = token;
+		}
+		if (i == 1)
+		{
+			fname = token;
+		}
+		if (i == 2)
+		{
+			lname = token;
+		}
+		if (i == 3)
+		{
+			mail = token;
+		}
+		if (i == 4)
+		{
+			temp = token;
+			stringstream AGE(temp);
+			int age = 0;
+			AGE >> age;
+		}
+		if (i == 5)
+		{
+			temp = token;
+			stringstream D1(temp);
+			int d1 = 0;
+			D1 >> d1;
+
+		}
+		if (i == 6)
+		{
+			temp = token;
+			stringstream D2(temp);
+			int d2 = 0;
+			D2 >> d2;
+		}
+		if (i == 7)
+		{
+			temp = token;
+			stringstream D3(temp);
+			int d3 = 0;
+			D3 >> d3;
+		}
+		if (i == 8)
+		{
+			temp = token;
+			if (temp == "SECURITY")
+			{
+				degreeProgram = SECURITY;
+			}
+			cout << temp << endl;
+	
+		}
+		classRoster.add(id, fname, lname, mail, age, d1, d2, d3, degree);
 	}
+	classRoster.printAll();
+
+
+}
 
 Roster::~Roster()
 {
