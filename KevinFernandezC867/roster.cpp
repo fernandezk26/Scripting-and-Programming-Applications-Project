@@ -24,7 +24,7 @@ Student* Roster::getStudentAt(int index)
 	return students[index];
 }
 
-void Roster::add(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, Degree degreeProgram) 
+void Roster::add(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, Degree program) 
 {
 	int courseDays[3];
 	courseDays[0] = daysInCourse1;
@@ -32,16 +32,16 @@ void Roster::add(string studentID, string firstName, string lastName, string ema
 	courseDays[2] = daysInCourse3;
 	addIndex++;
 
-	if (degreeProgram == NETWORK) {
-		classRosterArray[addIndex] = new NetworkStudent(studentID, firstName, lastName, emailAddress, age, courseDays, degreeProgram);
+	if (program == NETWORK) {
+		classRosterArray[addIndex] = new NetworkStudent(studentID, firstName, lastName, emailAddress, age, courseDays, program);
 	}
-	else if (degreeProgram == SOFTWARE)
+	else if (program == SOFTWARE)
 	{
-		classRosterArray[addIndex] = new SoftwareStudent(studentID, firstName, lastName, emailAddress, age, courseDays, degreeProgram);
+		classRosterArray[addIndex] = new SoftwareStudent(studentID, firstName, lastName, emailAddress, age, courseDays, program);
 	}
 	else 
 	{
-		classRosterArray[addIndex] = new SecurityStudent(studentID, firstName, lastName, emailAddress, age, courseDays, degreeProgram);
+		classRosterArray[addIndex] = new SecurityStudent(studentID, firstName, lastName, emailAddress, age, courseDays, program);
 	}
 }
 
