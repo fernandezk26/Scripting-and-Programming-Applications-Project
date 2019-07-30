@@ -2,6 +2,9 @@
 #include<iomanip>
 #include "student.h"
 
+
+//ADDED SET DEGREE PROGRAM, CHANGED ALL "DEGREE" to "DEGREEPROGRAM" ADDED TO PRINT METHOD
+
 Student::Student()//Empty constructor will set all to default values
 {
 	this->StudentID = "";
@@ -21,6 +24,7 @@ Student::Student(string studentID, string firstName, string lastName, string ema
 	this->EmailAddress = emailAddress;
 	this->Age = age;
 	for (int i = 0; i < daysArraySize; i++) this->DaysInCourse[i] = 0;
+	this->DegreeProgram = degreeProgram;
 }
 
 //getters
@@ -92,16 +96,30 @@ void Student::setDaysInCourse(int daysInCourse[])
 	}
 }
 
-//void Student::setDegreeProgram(Degree program)
-//{
-	//DegreeProgram = program;
-//}
+void Student::setDegreeProgram(Degree degreeProgram)
+{
+	this->DegreeProgram = degreeProgram;
+}
 
 
 
-//The print method displays all fields EXCEPT the book type!
+//The print method displays all fields EXCEPT the book type! 
 void Student::print()
 {
+	string degree;
+	if (getDegreeProgram() == 0)
+	{
+		degree = "Security";
+	}
+	else if (getDegreeProgram() == 1)
+	{
+		degree = "Network";
+	}
+	if (getDegreeProgram() == 2)
+	{
+		degree = "Software";
+	}
+
 	cout << left << setw(5) << StudentID;
 	cout << left << setw(20) << FirstName;
 	cout << left << setw(20) << LastName;
@@ -110,6 +128,7 @@ void Student::print()
 	cout << left << setw(10) << DaysInCourse[0];
 	cout << left << setw(10) << DaysInCourse[1];
 	cout << left << setw(10) << DaysInCourse[2];
+	cout << left << setw(10) << degree; 
 }
 
 Student::~Student()

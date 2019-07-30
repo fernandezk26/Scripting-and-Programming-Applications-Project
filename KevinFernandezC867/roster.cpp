@@ -85,7 +85,6 @@ int main() {
 	cout << "Kevin Fernandez \n\n";
 
 	Roster classRoster;
-	Degree degreeProgram;
 
 	const string studentData[] =
 	{
@@ -105,13 +104,14 @@ int main() {
 	r5 = studentData[4];
 
 	string id, fname, lname, mail, temp;
-	enum Degree degree;
-	int age = 0, d1 = 0, d2 = 0, d3 = 0;
+	int age, d1, d2, d3;
+
 	
 	istringstream ss(r1);
 	string token;
+	Degree degree;
 
-	for (int i = 0; i < 9; i++)
+	for (int i = 0; i < 10; i++)
 	{
 		getline(ss, token, ',');
 		if (i == 0)
@@ -132,48 +132,42 @@ int main() {
 		}
 		if (i == 4)
 		{
-			temp = token;
-			stringstream AGE(temp);
-			int age = 0;
-			AGE >> age;
+			age = stoi(token);
 		}
 		if (i == 5)
 		{
-			temp = token;
-			stringstream D1(temp);
-			int d1 = 0;
-			D1 >> d1;
-
+			d1 = stoi(token);
+			
 		}
 		if (i == 6)
 		{
-			temp = token;
-			stringstream D2(temp);
-			int d2 = 0;
-			D2 >> d2;
+			d2 = stoi(token);
 		}
 		if (i == 7)
 		{
-			temp = token;
-			stringstream D3(temp);
-			int d3 = 0;
-			D3 >> d3;
+			d3 = stoi(token);
 		}
 		if (i == 8)
 		{
-			temp = token;
-			if (temp == "SECURITY")
+			if (token == "SECURITY")
 			{
-				degreeProgram = SECURITY;
+				degree = SECURITY;
 			}
-			cout << temp << endl;
-	
+			else if (token == "NETWORK")
+			{
+				degree = NETWORK;
+			}
+			else if (token == "SOFTWARE")
+			{
+				degree = SOFTWARE;
+			}
 		}
-		classRoster.add(id, fname, lname, mail, age, d1, d2, d3, degree);
+
 	}
+	//ut << id << ' ' << fname << ' ' << lname << ' ' << mail << ' ' << age << ' ' << d1 << ' ' << d2 << ' ' << d3 << ' ' << degree << endl << endl;
+	classRoster.add(id, fname, lname, mail, age, d1, d2, d3, degree);
+
 	classRoster.printAll();
-
-
 }
 
 Roster::~Roster()
