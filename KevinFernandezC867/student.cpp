@@ -25,6 +25,7 @@ Student::Student(string studentID, string firstName, string lastName, string ema
 	this->Age = age;
 	for (int i = 0; i < daysArraySize; i++) this->DaysInCourse[i] = 0;
 	this->DegreeProgram = degreeProgram;
+	setAge(age);
 }
 
 //getters
@@ -106,21 +107,7 @@ void Student::setDegreeProgram(Degree  degreeProgram)
 //The print method displays all fields EXCEPT the book type! 
 void Student::print()
 {
-	string degree;
-	if (getDegreeProgram() == 0)
-	{
-		degree = "Security";
-	}
-	else if (getDegreeProgram() == 1)
-	{
-		degree = "Network";
-	}
-	if (getDegreeProgram() == 2)
-	{
-		degree = "Software";
-	}
-
-	cout << left << setw(5) << StudentID;
+	cout << left << setw(5) << getStudentID();
 	cout << left << setw(20) << FirstName;
 	cout << left << setw(20) << LastName;
 	cout << left << setw(20) << EmailAddress;
@@ -128,7 +115,6 @@ void Student::print()
 	cout << left << setw(10) << DaysInCourse[0];
 	cout << left << setw(10) << DaysInCourse[1];
 	cout << left << setw(10) << DaysInCourse[2];
-	cout << left << setw(10) << degree; 
 }
 
 Student::~Student()

@@ -34,30 +34,48 @@ void Roster::add(string studentID, string firstName, string lastName, string ema
 
 	if (degreeProgram == NETWORK) {
 		classRosterArray[addIndex] = new NetworkStudent(studentID, firstName, lastName, emailAddress, age, courseDays, degreeProgram);
+		//Outputs to test if add method works
+		cout << "created Network Student" << endl;
 	}
 	else if (degreeProgram == SOFTWARE)
 	{
 		classRosterArray[addIndex] = new SoftwareStudent(studentID, firstName, lastName, emailAddress, age, courseDays, degreeProgram);
+		//Outputs to test if add method works
+		cout << "created Software Student" << endl;
 	}
 	else 
 	{
 		classRosterArray[addIndex] = new SecurityStudent(studentID, firstName, lastName, emailAddress, age, courseDays, degreeProgram);
+		//Outputs to test if add method works
+		cout << "created Security Student" << endl;
 	}
 }
 
 void Roster::printAll()
 {
-	for (int i = 0; i <= this->lastIndex; i++) (this->students)[i]->print();
+	for (int i = 0; i < sizeof(classRosterArray) / sizeof(classRosterArray[i]); i++)
+	{
+		classRosterArray[i]->print();
+	}
 }
 
 void Roster::printByDegreeProgram(int degreeProgram)
 {
-
-}
+	for (int i = 0; i < sizeof(classRosterArray) / sizeof(classRosterArray[i]); i++)
+	{
+		if (classRosterArray[i] != nullptr)
+		{
+			if (classRosterArray[i]->getDegreeProgram() == degreeProgram)
+			{
+				classRosterArray[i]->print();
+			}
+		}
+	}
+};
 
 void Roster::printDaysInCourse(string studentID) 
 {
-
+	
 }
 
 void Roster::printInvalidEmails() 
@@ -68,12 +86,7 @@ void Roster::printInvalidEmails()
 
 void Roster::remove(string studentID) 
 {
-
 }
-
-
-
-
 
 int main() {
 	cout << "Scripting and Programming - Applications - C867 \n";
@@ -101,14 +114,15 @@ int main() {
 	//r5 = studentData[4];
 
 	Degree degree;
+	string id, fname, lname, mail, temp;
+	int age, d1, d2, d3;
 
 	for (int i = 0; i < sizeof(studentData) / sizeof(studentData[i]); i++)
 	{
 		string input = studentData[i];
 		istringstream ss(input);
 	    string token;
-		string id, fname, lname, mail, temp;
-		int age, d1, d2, d3;
+
 	
 		for (int i = 0; i < 9; i++)
 		{
@@ -160,18 +174,21 @@ int main() {
 				{
 					degree = SOFTWARE;
 				}
+			
+
 			}
 
 		}
-		classRoster.add(id, fname, lname, mail, age, d1, d2, d3, degree);
 
 		//PRINTING TO MAKE SURE THE VARIABLES ARE BEING ASSIGNED PROPERLY
-		cout << id << ' ' << fname << ' ' << lname << ' ' << mail << ' ' << age << ' ' << d1 << ' ' << d2 << ' ' << d3 << ' ' << degree << endl << endl;
+		//cout << id << ' ' << fname << ' ' << lname << ' ' << mail << ' ' << age << ' ' << d1 << ' ' << d2 << ' ' << d3 << ' ' << degree << endl << endl;
+		classRoster.add(id, fname, lname, mail, age, d1, d2, d3, degree);
 	}
 	
-
-
+	classRoster.remove("A3");
 	classRoster.printAll();
+	cout << endl; 
+	classRoster.printByDegreeProgram(SECURITY);
 }
 
 Roster::~Roster()
