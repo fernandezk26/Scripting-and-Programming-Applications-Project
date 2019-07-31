@@ -24,7 +24,7 @@ Student* Roster::getStudentAt(int index)
 	return students[index];
 }
 
-void Roster::add(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, Degree program) 
+void Roster::add(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, Degree  degreeProgram)
 {
 	int courseDays[3];
 	courseDays[0] = daysInCourse1;
@@ -32,16 +32,16 @@ void Roster::add(string studentID, string firstName, string lastName, string ema
 	courseDays[2] = daysInCourse3;
 	addIndex++;
 
-	if (program == NETWORK) {
-		classRosterArray[addIndex] = new NetworkStudent(studentID, firstName, lastName, emailAddress, age, courseDays, program);
+	if (degreeProgram == NETWORK) {
+		classRosterArray[addIndex] = new NetworkStudent(studentID, firstName, lastName, emailAddress, age, courseDays, degreeProgram);
 	}
-	else if (program == SOFTWARE)
+	else if (degreeProgram == SOFTWARE)
 	{
-		classRosterArray[addIndex] = new SoftwareStudent(studentID, firstName, lastName, emailAddress, age, courseDays, program);
+		classRosterArray[addIndex] = new SoftwareStudent(studentID, firstName, lastName, emailAddress, age, courseDays, degreeProgram);
 	}
 	else 
 	{
-		classRosterArray[addIndex] = new SecurityStudent(studentID, firstName, lastName, emailAddress, age, courseDays, program);
+		classRosterArray[addIndex] = new SecurityStudent(studentID, firstName, lastName, emailAddress, age, courseDays, degreeProgram);
 	}
 }
 
@@ -52,10 +52,7 @@ void Roster::printAll()
 
 void Roster::printByDegreeProgram(int degreeProgram)
 {
-	cout << "Printing Students of type " << degreeStrings[degreeProgram] << endl;
-	for (int i = 0; i <= lastIndex; i++) {
-		if (this->students[i]->getDegreeProgram() == degreeProgram) this->students[i]->print();
-	}
+
 }
 
 void Roster::printDaysInCourse(string studentID) 
@@ -95,77 +92,84 @@ int main() {
 		"A5,Kevin,Fernandez,kfern20@wgu.edu,15,20,90,30,SOFTWARE"
 	};
 
+	//TESTING HOW TO ACCESS THE STRINGS WITHIN THE ARRAY
+	//string r1, r2, r3, r4, r5;
+	//r1 = studentData[0];
+	//r2 = studentData[1];
+	//r3 = studentData[2];
+	//r4 = studentData[3];
+	//r5 = studentData[4];
 
-	string r1, r2, r3, r4, r5;
-	r1 = studentData[0];
-	r2 = studentData[1];
-	r3 = studentData[2];
-	r4 = studentData[3];
-	r5 = studentData[4];
-
-	string id, fname, lname, mail, temp;
-	int age, d1, d2, d3;
-
-	
-	istringstream ss(r1);
-	string token;
 	Degree degree;
 
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < sizeof(studentData) / sizeof(studentData[i]); i++)
 	{
-		getline(ss, token, ',');
-		if (i == 0)
+		string input = studentData[i];
+		istringstream ss(input);
+	    string token;
+		string id, fname, lname, mail, temp;
+		int age, d1, d2, d3;
+	
+		for (int i = 0; i < 9; i++)
 		{
-			id = token;
-		}
-		if (i == 1)
-		{
-			fname = token;
-		}
-		if (i == 2)
-		{
-			lname = token;
-		}
-		if (i == 3)
-		{
-			mail = token;
-		}
-		if (i == 4)
-		{
-			age = stoi(token);
-		}
-		if (i == 5)
-		{
-			d1 = stoi(token);
-			
-		}
-		if (i == 6)
-		{
-			d2 = stoi(token);
-		}
-		if (i == 7)
-		{
-			d3 = stoi(token);
-		}
-		if (i == 8)
-		{
-			if (token == "SECURITY")
+			getline(ss, token, ',');
+			if (i == 0)
 			{
-				degree = SECURITY;
+				id = token;
 			}
-			else if (token == "NETWORK")
+			if (i == 1)
 			{
-				degree = NETWORK;
+				fname = token;
 			}
-			else if (token == "SOFTWARE")
+			if (i == 2)
 			{
-				degree = SOFTWARE;
+				lname = token;
 			}
-		}
+			if (i == 3)
+			{
+				mail = token;
+			}
+			if (i == 4)
+			{
+				age = stoi(token);
+			}
+			if (i == 5)
+			{
+				d1 = stoi(token);
 
+			}
+			if (i == 6)
+			{
+				d2 = stoi(token);
+			}
+			if (i == 7)
+			{
+				d3 = stoi(token);
+			}
+			if (i == 8)
+			{
+				if (token == "SECURITY")
+				{
+					degree = SECURITY;
+				}
+				else if (token == "NETWORK")
+				{
+					degree = NETWORK;
+				}
+				else if (token == "SOFTWARE")
+				{
+					degree = SOFTWARE;
+				}
+			}
+
+		}
+		classRoster.add(id, fname, lname, mail, age, d1, d2, d3, degree);
+
+		//PRINTING TO MAKE SURE THE VARIABLES ARE BEING ASSIGNED PROPERLY
+		cout << id << ' ' << fname << ' ' << lname << ' ' << mail << ' ' << age << ' ' << d1 << ' ' << d2 << ' ' << d3 << ' ' << degree << endl << endl;
 	}
-	//ut << id << ' ' << fname << ' ' << lname << ' ' << mail << ' ' << age << ' ' << d1 << ' ' << d2 << ' ' << d3 << ' ' << degree << endl << endl;
-	classRoster.add(id, fname, lname, mail, age, d1, d2, d3, degree);
+	
+
 
 	classRoster.printAll();
 }

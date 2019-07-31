@@ -16,7 +16,7 @@ Student::Student()//Empty constructor will set all to default values
 	//NOTE that neither Book constructor sets the BookType - the type of Book is not known
 }
 
-Student::Student(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse[], Degree program)
+Student::Student(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse[], Degree  degreeProgram)
 {
 	this->StudentID = studentID;
 	this->FirstName = firstName;
@@ -24,7 +24,7 @@ Student::Student(string studentID, string firstName, string lastName, string ema
 	this->EmailAddress = emailAddress;
 	this->Age = age;
 	for (int i = 0; i < daysArraySize; i++) this->DaysInCourse[i] = 0;
-	this->DegreeProgram = program;
+	this->DegreeProgram = degreeProgram;
 }
 
 //getters
@@ -96,9 +96,9 @@ void Student::setDaysInCourse(int daysInCourse[])
 	}
 }
 
-void Student::setDegreeProgram(Degree program)
+void Student::setDegreeProgram(Degree  degreeProgram)
 {
-	this->DegreeProgram = program;
+	this->DegreeProgram = degreeProgram;
 }
 
 

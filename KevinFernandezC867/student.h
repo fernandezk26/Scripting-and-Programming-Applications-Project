@@ -8,7 +8,7 @@ class Student
 public:
 	const static int daysArraySize = 3;
 	Student();//empty constructor
-	Student(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse[], Degree program);//full constructor
+	Student(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse[], Degree  degreeProgram);//full constructor
 
 private:
 	string StudentID, FirstName, LastName, EmailAddress;

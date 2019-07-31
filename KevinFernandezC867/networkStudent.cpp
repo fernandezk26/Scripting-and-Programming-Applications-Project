@@ -8,7 +8,7 @@ NetworkStudent::NetworkStudent()
 	setDegreeProgram(NETWORK);
 }
 
-NetworkStudent::NetworkStudent(string studentID, string firstName, string lastName, string emailAddress, int age, int* daysInCourse, Degree program)
+NetworkStudent::NetworkStudent(string studentID, string firstName, string lastName, string emailAddress, int age, int* daysInCourse, Degree  degreeProgram)
 {
 	setDegreeProgram(NETWORK);
 }
