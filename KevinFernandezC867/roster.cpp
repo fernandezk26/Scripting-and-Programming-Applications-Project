@@ -35,19 +35,22 @@ void Roster::add(string studentID, string firstName, string lastName, string ema
 	if (degreeProgram == NETWORK) {
 		classRosterArray[addIndex] = new NetworkStudent(studentID, firstName, lastName, emailAddress, age, courseDays, degreeProgram);
 		//Outputs to test if add method works
-		cout << "created Network Student" << endl;
+		cout << "created Network Student : " << endl;
+		cout << studentID << ' ' << firstName << ' ' << lastName << ' ' << emailAddress << ' ' << age << ' ' << daysInCourse1 << ' ' << daysInCourse2 << ' ' << daysInCourse3 << ' ' << degreeProgram << endl;
 	}
 	else if (degreeProgram == SOFTWARE)
 	{
 		classRosterArray[addIndex] = new SoftwareStudent(studentID, firstName, lastName, emailAddress, age, courseDays, degreeProgram);
 		//Outputs to test if add method works
-		cout << "created Software Student" << endl;
+		cout << "created Software Student :" << endl;
+		cout << studentID << ' ' << firstName << ' ' << lastName << ' ' << emailAddress << ' ' << age << ' ' << daysInCourse1 << ' ' << daysInCourse2 << ' ' << daysInCourse3 << ' ' << degreeProgram << endl;
 	}
 	else 
 	{
 		classRosterArray[addIndex] = new SecurityStudent(studentID, firstName, lastName, emailAddress, age, courseDays, degreeProgram);
 		//Outputs to test if add method works
-		cout << "created Security Student" << endl;
+		cout << "created Security Student :" << endl;
+		cout << studentID << ' ' << firstName << ' ' << lastName << ' ' << emailAddress << ' ' << age << ' ' << daysInCourse1 << ' ' << daysInCourse2 << ' ' << daysInCourse3 << ' ' << degreeProgram << endl;
 	}
 }
 
@@ -185,7 +188,6 @@ int main() {
 		classRoster.add(id, fname, lname, mail, age, d1, d2, d3, degree);
 	}
 	
-	classRoster.remove("A3");
 	classRoster.printAll();
 	cout << endl; 
 	classRoster.printByDegreeProgram(SECURITY);
