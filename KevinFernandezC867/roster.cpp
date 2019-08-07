@@ -1,28 +1,14 @@
 #include <iostream>
 #include <sstream>
+#include <string>
+#include "student.h"
+#include "networkStudent.h"
+#include "securityStudent.h"
+#include "softwareStudent.h"
 #include "roster.h"
 
 using std::cout;
 using namespace std;
-
-Roster::Roster()
-{
-	this->maxSize = 0;
-	this->lastIndex = -1;
-	this->students = nullptr;
-}
-
-Roster::Roster(int maxSize)
-{
-	this->maxSize = maxSize;
-	this->lastIndex = -1;
-	this->students = new Student * [maxSize];
-}
-
-Student* Roster::getStudentAt(int index)
-{
-	return students[index];
-}
 
 void Roster::add(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, Degree  degreeProgram)
 {
@@ -34,31 +20,33 @@ void Roster::add(string studentID, string firstName, string lastName, string ema
 
 	if (degreeProgram == NETWORK) {
 		classRosterArray[addIndex] = new NetworkStudent(studentID, firstName, lastName, emailAddress, age, courseDays, degreeProgram);
-		//Outputs to test if add method works
 		cout << "created Network Student : " << endl;
-		cout << studentID << ' ' << firstName << ' ' << lastName << ' ' << emailAddress << ' ' << age << ' ' << daysInCourse1 << ' ' << daysInCourse2 << ' ' << daysInCourse3 << ' ' << degreeProgram << endl;
 	}
 	else if (degreeProgram == SOFTWARE)
 	{
 		classRosterArray[addIndex] = new SoftwareStudent(studentID, firstName, lastName, emailAddress, age, courseDays, degreeProgram);
-		//Outputs to test if add method works
 		cout << "created Software Student :" << endl;
-		cout << studentID << ' ' << firstName << ' ' << lastName << ' ' << emailAddress << ' ' << age << ' ' << daysInCourse1 << ' ' << daysInCourse2 << ' ' << daysInCourse3 << ' ' << degreeProgram << endl;
 	}
 	else 
 	{
 		classRosterArray[addIndex] = new SecurityStudent(studentID, firstName, lastName, emailAddress, age, courseDays, degreeProgram);
-		//Outputs to test if add method works
+		
 		cout << "created Security Student :" << endl;
-		cout << studentID << ' ' << firstName << ' ' << lastName << ' ' << emailAddress << ' ' << age << ' ' << daysInCourse1 << ' ' << daysInCourse2 << ' ' << daysInCourse3 << ' ' << degreeProgram << endl;
 	}
+	//Outputs to test if add method works
+	cout << studentID << ' ' << firstName << ' ' << lastName << ' ' << emailAddress << ' ' << age << ' ' << daysInCourse1 << ' ' << daysInCourse2 << ' ' << daysInCourse3 << ' ' << degreeProgram << endl;
+
 }
+
+
 
 void Roster::printAll()
 {
-	for (int i = 0; i < sizeof(classRosterArray) / sizeof(classRosterArray[i]); i++)
+	//for (int i = 0; i <= this->addIndex; i++) (this->classRosterArray)[i]->print();
+
+	for (int i = 0; i < 5; i++)
 	{
-		classRosterArray[i]->print();
+		this->classRosterArray[i]->print();
 	}
 }
 
@@ -98,24 +86,6 @@ int main() {
 	cout << "Kevin Fernandez \n\n";
 
 	Roster classRoster;
-
-	const string studentData[] =
-	{
-		"A1,John,Smith,John1989@gm ail.com,20,30,35,40,SECURITY",
-		"A2,Suzan,Erickson,Erickson_1990@gmailcom,19,50,30,40,NETWORK",
-		"A3,Jack,Napoli,The_lawyer99yahoo.com,19,20,40,33,SOFTWARE",
-		"A4,Erin,Black,Erin.black@comcast.net,22,50,58,40,SECURITY",
-		"A5,Kevin,Fernandez,kfern20@wgu.edu,15,20,90,30,SOFTWARE"
-	};
-
-	//TESTING HOW TO ACCESS THE STRINGS WITHIN THE ARRAY
-	//string r1, r2, r3, r4, r5;
-	//r1 = studentData[0];
-	//r2 = studentData[1];
-	//r3 = studentData[2];
-	//r4 = studentData[3];
-	//r5 = studentData[4];
-
 	Degree degree;
 	string id, fname, lname, mail, temp;
 	int age, d1, d2, d3;
@@ -182,9 +152,6 @@ int main() {
 			}
 
 		}
-
-		//PRINTING TO MAKE SURE THE VARIABLES ARE BEING ASSIGNED PROPERLY
-		//cout << id << ' ' << fname << ' ' << lname << ' ' << mail << ' ' << age << ' ' << d1 << ' ' << d2 << ' ' << d3 << ' ' << degree << endl << endl;
 		classRoster.add(id, fname, lname, mail, age, d1, d2, d3, degree);
 	}
 	

@@ -16,10 +16,9 @@ const string studentData[] =
 
 class Roster {
 public:
-	Roster();
-	Roster(int maxSize);
 
-	Student* getStudentAt(int index);
+
+
 	void printAll();
 	void add(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, Degree  degreeProgram);
 	void remove(string studentID);
@@ -34,8 +33,8 @@ private:
 
 	int lastIndex;
 	int maxSize;
-	Student** students;
+	Student* students;
 
 	// Declaring array of pointers
-	Student* classRosterArray[5];
+	Student* classRosterArray[5] = { nullptr, nullptr, nullptr, nullptr, nullptr };
 };
