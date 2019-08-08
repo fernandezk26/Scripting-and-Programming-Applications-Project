@@ -59,10 +59,18 @@ void Roster::printByDegreeProgram(int degreeProgram)
 	}
 };
 
-//printing the average days it took to complete 3 courses
 void Roster::printDaysInCourse(string studentID) 
 {
-
+	bool found = false;
+	for (int i = 0; i < sizeof(classRosterArray) / sizeof(classRosterArray[i]); i++)
+	{
+		if (studentID == classRosterArray[i]->getStudentID())
+		{
+			found = true;
+			int * days = classRosterArray[i]->getDaysInCourse();
+			cout << "Average days in course for the ID " << studentID << " is " << (days[0] + days[1] + days[2]) / 3 << endl;
+		}
+	}
 }
 
 void Roster::printInvalidEmails() 
@@ -174,11 +182,25 @@ int main() {
 	cout << left << setw(5) << "ID" << left << setw(20) << "Full Name" << left << setw(25) << "Email" << left << setw(10) << "Age" << left << setw(18) << "Days in course" << left << setw(10) << "Degree Type" << endl;
 	cout << "__________________________________________________________________________________________" << endl << endl;
 	classRoster.printByDegreeProgram(SOFTWARE);
+	cout << "__________________________________________________________________________________________" << endl << endl << endl << endl;
+
+
+	cout << "Printing average days in Course per student ID:" << endl;
 	cout << "__________________________________________________________________________________________" << endl << endl;
-	cout << "Removing student with the ID matching A3" << endl;
+	for (int i = 0; i < sizeof(classRoster.classRosterArray) / sizeof(classRoster.classRosterArray[i]); i++)
+	{
+		classRoster.printDaysInCourse(classRoster.classRosterArray[i]->getStudentID());
+	}
+	cout << "__________________________________________________________________________________________" << endl << endl << endl << endl;
+
+
+	cout << "Removing student with the ID matching A3:" << endl;
+	cout << "__________________________________________________________________________________________" << endl << endl;
 	classRoster.remove("A3");
-	cout << "Student Removed" << endl << endl;
-	cout << "Removing student with the ID matching A3" << endl;
+	cout << "Student Removed" << endl;
+	cout << "__________________________________________________________________________________________" << endl << endl << endl << endl;
+	cout << "Removing student with the ID matching A3:" << endl;
+	cout << "__________________________________________________________________________________________" << endl << endl;
 	classRoster.remove("A3");
 	cout << endl << "__________________________________________________________________________________________" << endl << endl;
 
