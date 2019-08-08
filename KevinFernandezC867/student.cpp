@@ -102,7 +102,7 @@ void Student::setDegreeProgram(Degree  degreeProgram)
 void Student::print()
 {
 	cout << left << setw(5) << StudentID;
-	cout << left << setw(5) << FirstName;
+	cout << left << setw(7) << FirstName;
 	cout << left << setw(15) << LastName;
 	cout << left << setw(25) << EmailAddress;
 	cout << left << setw(10) << Age;
