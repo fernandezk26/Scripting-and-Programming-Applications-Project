@@ -16,15 +16,14 @@ Student::Student()//Empty constructor will set all to default values
 	//NOTE that neither Book constructor sets the BookType - the type of Book is not known
 }
 
-Student::Student(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse[], Degree  degreeProgram)
+Student::Student(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse[])
 {
 	this->StudentID = studentID;
 	this->FirstName = firstName;
 	this->LastName = lastName;
 	this->EmailAddress = emailAddress;
 	this->Age = age;
-	for (int i = 0; i < daysArraySize; i++) this->DaysInCourse[i] = 0;
-	this->DegreeProgram = degreeProgram;
+	for (int i = 0; i < daysArraySize; i++) this->DaysInCourse[i] = daysInCourse[i];
 	setAge(age);
 }
 
@@ -104,14 +103,14 @@ void Student::setDegreeProgram(Degree  degreeProgram)
 
 
 
-//The print method displays all fields EXCEPT the book type! 
+//The print method displays all fields EXCEPT the Degree type! 
 void Student::print()
 {
 	cout << left << setw(5) << getStudentID();
-	cout << left << setw(20) << FirstName;
-	cout << left << setw(20) << LastName;
-	cout << left << setw(20) << EmailAddress;
-	cout << left << setw(5) << Age;
+	cout << left << setw(5) << FirstName;
+	cout << left << setw(10) << LastName;
+	cout << left << setw(10) << EmailAddress;
+	cout << left << setw(10) << Age;
 	cout << left << setw(10) << DaysInCourse[0];
 	cout << left << setw(10) << DaysInCourse[1];
 	cout << left << setw(10) << DaysInCourse[2];

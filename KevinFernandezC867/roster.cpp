@@ -20,34 +20,29 @@ void Roster::add(string studentID, string firstName, string lastName, string ema
 
 	if (degreeProgram == NETWORK) {
 		classRosterArray[addIndex] = new NetworkStudent(studentID, firstName, lastName, emailAddress, age, courseDays, degreeProgram);
-		cout << "created Network Student : " << endl;
+		/*cout << "created Network Student : " << endl;*/
 	}
 	else if (degreeProgram == SOFTWARE)
 	{
 		classRosterArray[addIndex] = new SoftwareStudent(studentID, firstName, lastName, emailAddress, age, courseDays, degreeProgram);
-		cout << "created Software Student :" << endl;
+		/*cout << "created Software Student :" << endl;*/
 	}
 	else 
 	{
 		classRosterArray[addIndex] = new SecurityStudent(studentID, firstName, lastName, emailAddress, age, courseDays, degreeProgram);
 		
-		cout << "created Security Student :" << endl;
+		/*cout << "created Security Student :" << endl;*/
 	}
 	//Outputs to test if add method works
-	cout << studentID << ' ' << firstName << ' ' << lastName << ' ' << emailAddress << ' ' << age << ' ' << daysInCourse1 << ' ' << daysInCourse2 << ' ' << daysInCourse3 << ' ' << degreeProgram << endl;
-
+	/*cout << studentID << ' ' << firstName << ' ' << lastName << ' ' << emailAddress << ' ' << age << ' ' << daysInCourse1 << ' ' << daysInCourse2 << ' ' << daysInCourse3 << ' ' << degreeProgram << endl;
+*/
 }
 
 
 
 void Roster::printAll()
 {
-	//for (int i = 0; i <= this->addIndex; i++) (this->classRosterArray)[i]->print();
-
-	for (int i = 0; i < 5; i++)
-	{
-		this->classRosterArray[i]->print();
-	}
+	for (int i = 0; i <= this->addIndex; i++) (this->classRosterArray)[i]->print();
 }
 
 void Roster::printByDegreeProgram(int degreeProgram)
@@ -157,7 +152,7 @@ int main() {
 	
 	classRoster.printAll();
 	cout << endl; 
-	classRoster.printByDegreeProgram(SECURITY);
+	classRoster.printByDegreeProgram(SOFTWARE);
 }
 
 Roster::~Roster()

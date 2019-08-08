@@ -8,7 +8,7 @@ SoftwareStudent::SoftwareStudent()
 	setDegreeProgram(SOFTWARE);
 }
 
-SoftwareStudent::SoftwareStudent(string studentID, string firstName, string lastName, string email, int age, int* daysInCourse, Degree  degreeProgram)
+SoftwareStudent::SoftwareStudent(string studentID, string firstName, string lastName, string emailAddress, int age, int* daysInCourse, Degree  degreeProgram) : Student(studentID, firstName, lastName, emailAddress, age, daysInCourse)
 {
 	setDegreeProgram(SOFTWARE);
 }
