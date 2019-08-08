@@ -26,15 +26,14 @@ public:
 	void printDaysInCourse(string studentID);
 	void printInvalidEmails();
 	int addIndex = -1;
+	Student* classRosterArray[5] = { nullptr, nullptr, nullptr, nullptr, nullptr };
 
 	~Roster();
 
 private:
 
-	int lastIndex;
-	int maxSize;
 	Student* students;
 
 	// Declaring array of pointers
-	Student* classRosterArray[5] = { nullptr, nullptr, nullptr, nullptr, nullptr };
+
 };

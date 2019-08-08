@@ -4,7 +4,6 @@ using std::cout;
 
 NetworkStudent::NetworkStudent()
 {
-	//This is the only work this constructor needs to do; the Book class will do the rest; NEAT, HUH?
 	setDegreeProgram(NETWORK);
 }
 
@@ -16,22 +15,22 @@ NetworkStudent::NetworkStudent(string studentID, string firstName, string lastNa
 
 Degree NetworkStudent::getDegreeProgram()
 {
-	return NETWORK;//Now we can do this - it's not virtual anymore
+	return NETWORK;
 }
 
 void NetworkStudent::setDegreeProgram(Degree NETWORK)
 {
-	this->program = NETWORK;//Now we can do this - we know what kind of book it is
+	this->program = NETWORK;
 }
 
 void NetworkStudent::print()
 {
-	this->Student::print();//Call the print method from the Book class
-	cout << "NETWORK" << "\n";//This is the only thing left to display
+	this->Student::print();
+	cout << "NETWORK" << "\n";
 }
 
 NetworkStudent::~NetworkStudent()
 {
-	~Degree();//Call the super destructor from Book in case it needs to release something
+	~Degree();
 	delete this;
 }

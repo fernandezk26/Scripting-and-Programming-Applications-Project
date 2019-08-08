@@ -12,10 +12,9 @@ public:
 
 private:
 	string StudentID, FirstName, LastName, EmailAddress;
-	int DaysInCourse[daysArraySize];//DaysInCourse will be an array of size 3
+	int DaysInCourse[daysArraySize];
 	int Age;
-	Degree DegreeProgram;//The enumerated value: Security, networking or software.
-
+	Degree DegreeProgram;
 
 public:
 	//getters
@@ -25,7 +24,7 @@ public:
 	string getEmailAddress();
 	int* getDaysInCourse();
 	int getAge();
-	virtual Degree getDegreeProgram();//VIRTUAL; cannot instantiate a Book object
+	virtual Degree getDegreeProgram();
 
 	//setters
 	void setStudentId(string studentID);

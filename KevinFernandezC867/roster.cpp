@@ -6,7 +6,7 @@
 #include "securityStudent.h"
 #include "softwareStudent.h"
 #include "roster.h"
-
+#include<iomanip>
 using std::cout;
 using namespace std;
 
@@ -51,7 +51,7 @@ void Roster::printByDegreeProgram(int degreeProgram)
 	{
 		if (classRosterArray[i] != nullptr)
 		{
-			if (classRosterArray[i]->getDegreeProgram() == degreeProgram)
+			if (degreeProgram == classRosterArray[i]->getDegreeProgram())
 			{
 				classRosterArray[i]->print();
 			}
@@ -59,26 +59,43 @@ void Roster::printByDegreeProgram(int degreeProgram)
 	}
 };
 
+//printing the average days it took to complete 3 courses
 void Roster::printDaysInCourse(string studentID) 
 {
-	
+
 }
 
 void Roster::printInvalidEmails() 
 {
-
+	for (int i = 0; i < sizeof(classRosterArray) / sizeof(classRosterArray[i]); i++)
+	{
+		bool valid = true;
+		
+	}
 }
 
 
 void Roster::remove(string studentID) 
 {
+	for (int i = 0; i < sizeof(classRosterArray) / sizeof(classRosterArray[i]); i++)
+	{
+		if (classRosterArray[i] == nullptr)
+		{
+			cout << "ERROR: this student ID is not found";
+		}
+		else if (classRosterArray[i]->getStudentID() == studentID)
+		{
+			classRosterArray[i] = nullptr;
+		}
+	}
 }
 
 int main() {
-	cout << "Scripting and Programming - Applications - C867 \n";
-	cout << "C++ \n";
-	cout << "000987606 \n";
-	cout << "Kevin Fernandez \n\n";
+	cout << "Scripting and Programming - Applications - C867" << endl << endl;
+	cout << "C++" << endl;
+	cout << "000987606" << endl;
+	cout << "Kevin Fernandez" << endl;
+	cout << "__________________________________________________________________________________________" << endl << endl << endl;
 
 	Roster classRoster;
 	Degree degree;
@@ -91,7 +108,6 @@ int main() {
 		istringstream ss(input);
 	    string token;
 
-	
 		for (int i = 0; i < 9; i++)
 		{
 			getline(ss, token, ',');
@@ -142,17 +158,30 @@ int main() {
 				{
 					degree = SOFTWARE;
 				}
-			
-
 			}
-
 		}
 		classRoster.add(id, fname, lname, mail, age, d1, d2, d3, degree);
 	}
 	
+	cout << "Printing Class Roster:" << endl << endl;
+	cout << left << setw(5) << "ID" << left << setw(20) << "Full Name" << left << setw(25) << "Email" << left << setw(10) << "Age" << left << setw(18) << "Days in course" << left << setw(10) << "Degree Type" << endl;
+	cout << "__________________________________________________________________________________________" << endl << endl;
+
 	classRoster.printAll();
-	cout << endl; 
+	cout << "__________________________________________________________________________________________" << endl << endl;
+	cout << endl << endl;
+	cout << "Printing Students with the SOFTWARE degree type:" << endl << endl;
+	cout << left << setw(5) << "ID" << left << setw(20) << "Full Name" << left << setw(25) << "Email" << left << setw(10) << "Age" << left << setw(18) << "Days in course" << left << setw(10) << "Degree Type" << endl;
+	cout << "__________________________________________________________________________________________" << endl << endl;
 	classRoster.printByDegreeProgram(SOFTWARE);
+	cout << "__________________________________________________________________________________________" << endl << endl;
+	cout << "Removing student with the ID matching A3" << endl;
+	classRoster.remove("A3");
+	cout << "Student Removed" << endl << endl;
+	cout << "Removing student with the ID matching A3" << endl;
+	classRoster.remove("A3");
+	cout << endl << "__________________________________________________________________________________________" << endl << endl;
+
 }
 
 Roster::~Roster()

@@ -2,18 +2,13 @@
 #include<iomanip>
 #include "student.h"
 
-
-
-
-Student::Student()//Empty constructor will set all to default values
+Student::Student()
 {
 	this->StudentID = "";
 	this->FirstName = "";
 	this->LastName = "";
 	this->EmailAddress = "";
-	for (int i = 0; i < daysArraySize; i++) this->DaysInCourse[i] = 0;
-
-	//NOTE that neither Book constructor sets the BookType - the type of Book is not known
+	for (int i = 0; i < daysArraySize; i++) { this->DaysInCourse[i] = 0; }
 }
 
 Student::Student(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse[])
@@ -23,7 +18,7 @@ Student::Student(string studentID, string firstName, string lastName, string ema
 	this->LastName = lastName;
 	this->EmailAddress = emailAddress;
 	this->Age = age;
-	for (int i = 0; i < daysArraySize; i++) this->DaysInCourse[i] = daysInCourse[i];
+	for (int i = 0; i < daysArraySize; i++) { this->DaysInCourse[i] = daysInCourse[i]; }
 	setAge(age);
 }
 
@@ -106,19 +101,18 @@ void Student::setDegreeProgram(Degree  degreeProgram)
 //The print method displays all fields EXCEPT the Degree type! 
 void Student::print()
 {
-	cout << left << setw(5) << getStudentID();
+	cout << left << setw(5) << StudentID;
 	cout << left << setw(5) << FirstName;
-	cout << left << setw(10) << LastName;
-	cout << left << setw(10) << EmailAddress;
+	cout << left << setw(15) << LastName;
+	cout << left << setw(25) << EmailAddress;
 	cout << left << setw(10) << Age;
-	cout << left << setw(10) << DaysInCourse[0];
-	cout << left << setw(10) << DaysInCourse[1];
-	cout << left << setw(10) << DaysInCourse[2];
+	cout << left << setw(6) << DaysInCourse[0];
+	cout << left << setw(6) << DaysInCourse[1];
+	cout << left << setw(6) << DaysInCourse[2];
 }
 
 Student::~Student()
 {
 }
 
-//NOTE THIS 'ABSTRACT' CLASS SEEMS TO BE DOING A LOT OF WORK!  
-//IT WON'T GO TO WASTE; THE DERIVED CLASSES WILL USE IT!
+
