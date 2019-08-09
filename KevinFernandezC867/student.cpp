@@ -97,13 +97,11 @@ void Student::setDegreeProgram(Degree  degreeProgram)
 }
 
 
-
-//The print method displays all fields EXCEPT the Degree type! 
 void Student::print()
 {
 	cout << left << setw(5) << StudentID;
 	cout << left << setw(7) << FirstName;
-	cout << left << setw(15) << LastName;
+	cout << left << setw(13) << LastName;
 	cout << left << setw(25) << EmailAddress;
 	cout << left << setw(10) << Age;
 	cout << left << setw(6) << DaysInCourse[0];

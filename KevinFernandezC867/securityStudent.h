@@ -20,7 +20,6 @@ public:
 private:
 	Degree degreeProgram;
 
-	//Destructor
 	~SecurityStudent();
 };
 

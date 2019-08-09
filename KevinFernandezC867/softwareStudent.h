@@ -20,7 +20,6 @@ public:
 private:
 	Degree program;
 
-	//Destructor
 	~SoftwareStudent();
 };
 

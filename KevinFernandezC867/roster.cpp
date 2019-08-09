@@ -2,11 +2,9 @@
 #include <sstream>
 #include <string>
 #include "student.h"
-#include "networkStudent.h"
-#include "securityStudent.h"
-#include "softwareStudent.h"
 #include "roster.h"
 #include<iomanip>
+
 using std::cout;
 using namespace std;
 
@@ -42,19 +40,17 @@ void Roster::add(string studentID, string firstName, string lastName, string ema
 
 void Roster::printAll()
 {
-	for (int i = 0; i <= this->addIndex; i++) (this->classRosterArray)[i]->print();
+	for (int i = 0; i <= addIndex; i++) (classRosterArray)[i]->print();
 }
 
 void Roster::printByDegreeProgram(int degreeProgram)
 {
 	for (int i = 0; i < sizeof(classRosterArray) / sizeof(classRosterArray[i]); i++)
 	{
-		if (classRosterArray[i] != nullptr)
+
+		if (degreeProgram == classRosterArray[i]->getDegreeProgram())
 		{
-			if (degreeProgram == classRosterArray[i]->getDegreeProgram())
-			{
-				classRosterArray[i]->print();
-			}
+			classRosterArray[i]->print();
 		}
 	}
 };
@@ -68,42 +64,30 @@ void Roster::printDaysInCourse(string studentID)
 		{
 			found = true;
 			int * days = classRosterArray[i]->getDaysInCourse();
+			//outputting that the values are iterated through and assigned properly
+			/*cout << days[0] << endl;
+			cout << days[1] << endl;
+			cout << days[2] << endl;*/
 			cout << "Average days in course for the ID " << studentID << " is " << (days[0] + days[1] + days[2]) / 3 << endl;
 		}
 	}
 }
 
-void Roster::printInvalidEmails() //FIXME
+void Roster::printInvalidEmails() 
 
 {
-	int i = 0;
-	bool invalidEmail = true;
-	bool r2 = false;
-	bool r3 = false;
-
 	for (int i = 0; i < sizeof(classRosterArray) / sizeof(classRosterArray[i]); i++)
 	{
 		string mail = classRosterArray[i]->getEmailAddress();
+		//testing getEmailAddress function access
+		//cout << mail;
 
-		if (invalidEmail == false)
+		if ((mail.find(' ') != std::string::npos) || (mail.find('@') == std::string::npos) || (mail.find('.') == std::string::npos))
 		{
-			if (mail.find(' ') == std::string::npos)
-			{
-				invalidEmail == false;
-				if (mail.find('@') != std::string::npos)
-				{
-					invalidEmail == false;
-					if (mail.find('.') != std::string::npos)
-					{
-						invalidEmail == false;
-					}
-				}
-			}
-			break;
+			cout << mail << endl;
 		}
 		else
 		{
-			cout << mail;
 			break;
 		}
 	}
@@ -111,9 +95,15 @@ void Roster::printInvalidEmails() //FIXME
 
 
 void Roster::remove(string studentID) 
-{
+{	
+
+
 	for (int i = 0; i < sizeof(classRosterArray) / sizeof(classRosterArray[i]); i++)
 	{
+		//testing to see how to access studentID
+		/*string test = classRosterArray[i]->getStudentID();
+		cout << test;*/
+
 		if (classRosterArray[i] == nullptr)
 		{
 			cout << "ERROR: this student ID is not found";
@@ -136,6 +126,10 @@ int main() {
 	Degree degree;
 	string id, fname, lname, mail, temp;
 	int age, d1, d2, d3;
+
+	//testing how to access studentData[]
+	//string r1 = studentData[0];
+	//cout << r1 << endl;
 
 	for (int i = 0; i < sizeof(studentData) / sizeof(studentData[i]); i++)
 	{
@@ -193,6 +187,8 @@ int main() {
 				{
 					degree = SOFTWARE;
 				}
+				//testing to see if the data is being parsed and assigned properly
+				//cout << id << ' ' << fname << ' ' << lname << ' ' << mail << ' ' << age << ' ' << d1 << ' ' << d2 << ' ' << d3 << ' ' << degree << endl;
 			}
 		}
 		classRoster.add(id, fname, lname, mail, age, d1, d2, d3, degree);
@@ -201,14 +197,14 @@ int main() {
 	cout << "Printing Class Roster:" << endl << endl;
 	cout << left << setw(5) << "ID" << left << setw(20) << "Full Name" << left << setw(25) << "Email" << left << setw(10) << "Age" << left << setw(18) << "Days in course" << left << setw(10) << "Degree Type" << endl;
 	cout << "__________________________________________________________________________________________" << endl << endl;
-
 	classRoster.printAll();
 	cout << "__________________________________________________________________________________________" << endl << endl;
 	cout << endl << endl;
-	cout << "Printing Students with the SOFTWARE degree type:" << endl << endl;
-	cout << left << setw(5) << "ID" << left << setw(20) << "Full Name" << left << setw(25) << "Email" << left << setw(10) << "Age" << left << setw(18) << "Days in course" << left << setw(10) << "Degree Type" << endl;
+
+
+	cout << "Printing Invalid emails" << endl;
 	cout << "__________________________________________________________________________________________" << endl << endl;
-	classRoster.printByDegreeProgram(SOFTWARE);
+	classRoster.printInvalidEmails();
 	cout << "__________________________________________________________________________________________" << endl << endl << endl << endl;
 
 
@@ -218,6 +214,13 @@ int main() {
 	{
 		classRoster.printDaysInCourse(classRoster.classRosterArray[i]->getStudentID());
 	}
+	cout << "__________________________________________________________________________________________" << endl << endl << endl << endl;
+
+
+	cout << "Printing Students with the SOFTWARE degree type:" << endl << endl;
+	cout << left << setw(5) << "ID" << left << setw(20) << "Full Name" << left << setw(25) << "Email" << left << setw(10) << "Age" << left << setw(18) << "Days in course" << left << setw(10) << "Degree Type" << endl;
+	cout << "__________________________________________________________________________________________" << endl << endl;
+	classRoster.printByDegreeProgram(SOFTWARE);
 	cout << "__________________________________________________________________________________________" << endl << endl << endl << endl;
 
 
@@ -232,15 +235,6 @@ int main() {
 	cout << endl << "__________________________________________________________________________________________" << endl << endl;
 	cout << endl << endl << endl << endl;
 
-	string test;
-	string joe = "joe";		
-	test = joe.at(0);
-
-	cout << test;
-
-	cout << endl << endl << endl << endl;
-
-	classRoster.printInvalidEmails();
 }
 
 Roster::~Roster()
