@@ -99,14 +99,14 @@ void Student::setDegreeProgram(Degree  degreeProgram)
 
 void Student::print()
 {
-	cout << left << setw(5) << StudentID;
-	cout << left << setw(7) << FirstName;
-	cout << left << setw(13) << LastName;
-	cout << left << setw(25) << EmailAddress;
-	cout << left << setw(10) << Age;
-	cout << left << setw(6) << DaysInCourse[0];
-	cout << left << setw(6) << DaysInCourse[1];
-	cout << left << setw(6) << DaysInCourse[2];
+	cout << left << setw(5) << getStudentID();
+	cout << left << setw(7) << getFirstName();
+	cout << left << setw(13) << getLastName();
+	cout << left << setw(25) << getEmailAddress();
+	cout << left << setw(10) << getAge();
+	cout << left << setw(6) << getDaysInCourse()[0];
+	cout << left << setw(6) << getDaysInCourse()[1];
+	cout << left << setw(6) << getDaysInCourse()[2];
 }
 
 Student::~Student()

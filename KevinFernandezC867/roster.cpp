@@ -40,7 +40,13 @@ void Roster::add(string studentID, string firstName, string lastName, string ema
 
 void Roster::printAll()
 {
-	for (int i = 0; i <= addIndex; i++) (classRosterArray)[i]->print();
+	for (int i = 0; i <= addIndex; i++)
+	{
+		if (classRosterArray[i] != nullptr)
+		{
+			(classRosterArray)[i]->print();
+		}
+	}
 }
 
 void Roster::printByDegreeProgram(int degreeProgram)
