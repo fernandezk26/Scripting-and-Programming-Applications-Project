@@ -73,12 +73,39 @@ void Roster::printDaysInCourse(string studentID)
 	}
 }
 
-void Roster::printInvalidEmails() 
+void Roster::printInvalidEmails() //FIXME
+
 {
+	int i = 0;
+	bool invalidEmail = true;
+	bool r2 = false;
+	bool r3 = false;
+
 	for (int i = 0; i < sizeof(classRosterArray) / sizeof(classRosterArray[i]); i++)
 	{
-		bool valid = true;
-		
+		string mail = classRosterArray[i]->getEmailAddress();
+
+		if (invalidEmail == false)
+		{
+			if (mail.find(' ') == std::string::npos)
+			{
+				invalidEmail == false;
+				if (mail.find('@') != std::string::npos)
+				{
+					invalidEmail == false;
+					if (mail.find('.') != std::string::npos)
+					{
+						invalidEmail == false;
+					}
+				}
+			}
+			break;
+		}
+		else
+		{
+			cout << mail;
+			break;
+		}
 	}
 }
 
@@ -203,7 +230,17 @@ int main() {
 	cout << "__________________________________________________________________________________________" << endl << endl;
 	classRoster.remove("A3");
 	cout << endl << "__________________________________________________________________________________________" << endl << endl;
+	cout << endl << endl << endl << endl;
 
+	string test;
+	string joe = "joe";		
+	test = joe.at(0);
+
+	cout << test;
+
+	cout << endl << endl << endl << endl;
+
+	classRoster.printInvalidEmails();
 }
 
 Roster::~Roster()
